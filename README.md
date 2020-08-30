@@ -2,31 +2,31 @@
 收集你最喜愛的餐廳，有餐廳的資料和評分，並可依關鍵字做搜尋!
 
 ## 功能
-使用者可以在首頁看到所有餐廳與它們的簡單資料
+使用者可以在首頁看到所有餐廳與它們的簡單資料:<br />
 *餐廳照片<br />
-+餐廳名稱<br />
--餐廳分類<br />
+*餐廳名稱<br />
+*餐廳分類<br />
 *餐廳評分<br />
 
-使用者可以再點進去看餐廳的詳細資訊
-*類別
-+地址
--電話
-*描述
-+圖片
+使用者可以再點進去看餐廳的詳細資訊:<br />
+*類別<br />
+*地址<br />
+*電話<br />
+*描述<br />
+*圖片<br />
 
 使用者可以透過搜尋餐廳名稱來找到特定的餐廳
 
 
-## 開發環境
-Node.js: v10.15.0
-Express: 4.17.1
-Express-handlebars: 5.1.0
-Visual Studio Code
+## 開發環境 <br />
+Node.js: v10.15.0 <br />
+Express: 4.17.1<br />
+Express-handlebars: 5.1.0<br />
+Visual Studio Code<br />
 
 ## 安裝與執行步驟
-使用 git clone 複製專案到本機端
-在你電腦的terminal輸入以下指令: 看到done表示成功
+使用 git clone 複製專案到本機端<br />
+在你電腦的terminal輸入以下指令: 看到done表示成功<br />
 
 ```
 git clone https://github.com/Sharon-Liu-go/dine-remote.git
