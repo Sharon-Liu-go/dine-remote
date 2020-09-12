@@ -1,9 +1,10 @@
 const express = require('express')
-const restaurantList = require('./restaurant.json')
+// const restaurantList = require('./restaurant.json')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const Dine = require('./models/restaurant') // 載入 
 
 mongoose.connect('mongodb://localhost/dine', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -24,8 +25,16 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+// app.get('/', (req, res) => {
+//   res.render('index', { restaurants: restaurantList.results })
+// })
+
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Dine.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
+
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
