@@ -115,13 +115,6 @@ app.get('/search', (req, res) => {
       return restaurantsFiltered.filter(restaurants => restaurants.name.toLowerCase().includes(keyword.toLowerCase()))
     })
     .then(restaurants => res.render('index', { restaurants: restaurants, keyword, keyword }))
-  // Dine.find()
-  //   .lean()
-  //   .then((restaurants) => {
-  //     return restaurants.filter(restaurant =>
-  //       restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()))
-  //   })
-  //   .then(restaurants => res.render('index', { restaurants, keyword }))
 })
 
 app.listen(port, () => {
