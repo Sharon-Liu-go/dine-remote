@@ -21,7 +21,22 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           我的餐廳清單
         </a>
-        <a href="/restaurants/create"><i class="fas fa-plus-circle mr-1"></i>Create new restaurant</a>
+        <div class="d-flex">
+          <a href="/restaurants/create" class="d-flex align-items-center"><i class="fas fa-plus-circle mr-1"></i>Create
+            new restaurant</a>
+          <div class="dropdown ml-5">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sort
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">A-Z</a>
+              <a class="dropdown-item" href="#">Z-A</a>
+              <a class="dropdown-item" href="#">類別</a>
+              <a class="dropdown-item" href="#">地區</a>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 

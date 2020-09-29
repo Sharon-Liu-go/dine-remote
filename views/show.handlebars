@@ -1,5 +1,13 @@
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+
 <div class="container">
+  <div class="d-flex justify-content-end ">
+    <a href="/restaurants/{{restaurant._id}}/edit" class="d-flex align-items-center"><i
+        class="fas fa-edit mr-1"></i></a>
+    <button type="submit" class="btn" data-toggle="modal" data-target="#ok{{restaurant._id}}"><i
+        class="fas fa-trash-alt"></i></button>
+  </div>
+
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
 
@@ -36,6 +44,30 @@
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ok{{restaurant._id}}" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete 『{{restaurant.name}}』?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+        <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+          <button type="submit" class="btn btn-primary">Yes</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
