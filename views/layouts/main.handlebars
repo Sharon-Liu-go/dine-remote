@@ -25,18 +25,22 @@
           <a href="/restaurants/create" class="d-flex align-items-center"><i class="fas fa-plus-circle mr-1"></i>Create
             new restaurant</a>
           <div class="dropdown ml-5">
+
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Sort
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">A-Z</a>
-              <a class="dropdown-item" href="#">Z-A</a>
-              <a class="dropdown-item" href="#">類別</a>
-              <a class="dropdown-item" href="#">地區</a>
-            </div>
+            <form action="/restaurants/sort">
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/restaurants/sort/A-Z">A-Z</a>
+                <a class="dropdown-item" href="/restaurants/sort/Z-A">Z-A</a>
+                <a class="dropdown-item" href="/restaurants/sort/類別">類別</a>
+                <a class="dropdown-item" href="/restaurants/sort/地區">地區</a>
+            </form>
           </div>
+
         </div>
+      </div>
       </div>
     </nav>
 

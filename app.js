@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Dine = require('./models/restaurant') // 載入 
 
-
+const methodOverride = require('method-override')
 
 
 mongoose.connect('mongodb://localhost/dine', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -23,6 +23,7 @@ db.once('open', () => {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
@@ -80,7 +81,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 
 })
 
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id/edit', (req, res) => {
   const id = req.params.restaurant_id
   console.log(id)
   console.log(req.body)
@@ -93,7 +94,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 
 })
-app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurant_id/delete', (req, res) => {
   const id = req.params.restaurant_id
   console.log(id)
   console.log(req.body)
@@ -118,6 +119,49 @@ app.get('/search', (req, res) => {
     )
 })
 
+// sort function：　
+app.get('/restaurants/sort/:sortTarget', (req, res) => {
+  console.log(req.params.sortTarget)
+  const sortTarget = req.params.sortTarget
+  switch (sortTarget) {
+    case "A-Z":
+      return Dine.find()
+        .lean()
+        .sort({ name_en: 'asc' })
+        .then(restaurants => res.render('index', { restaurants }))
+        .catch(error => console.error(error))
+
+    case "Z-A":
+      return Dine.find()
+        .lean()
+        .sort({ name_en: 'desc' })
+        .then(restaurants => res.render('index', { restaurants }))
+        .catch(error => console.error(error))
+
+    case "類別":
+      return Dine.find()
+        .lean()
+        .sort({ category: 'asc' })
+        .then(restaurants => res.render('index', { restaurants }))
+        .catch(error => console.error(error))
+
+    case "地區":
+      return Dine.find()
+        .lean()
+        .sort({ location: 'asc' })
+        .then(restaurants => res.render('index', { restaurants }))
+        .catch(error => console.error(error))
+  }
+
+
+  // Dine.find()
+  //   .lean()
+  //   .then(restaurantsFiltered => {
+  //     return restaurantsFiltered.filter(restaurants => restaurants.catagory.includes())
+  //   })
+  //   .then(restaurants => res.render('index', { restaurants: restaurants, keyword, keyword })
+  //   )
+})
 app.listen(port, () => {
   console.log(`Express is listening on localhost http://localhost:${port}`)
 })
