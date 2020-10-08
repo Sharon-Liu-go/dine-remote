@@ -1,3 +1,5 @@
+*{box-sizing: border-box}
+
 header {
   overflow: hidden;
 }
@@ -54,6 +56,7 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .card img{
   height: 180px;
 }
@@ -98,4 +101,11 @@ header {
     height: auto;
   }
   
+}
+
+/* create css */
+
+.card:hover{
+
+  border: solid 0.05rem rgba(255, 99, 71, 1) ; 
 }
