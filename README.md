@@ -20,6 +20,12 @@
 
 使用者可以透過搜尋餐廳名稱來找到特定的餐廳
 
+使用者可以透過nav bar上的sort下拉式選項，分別進行以下分類排列順序:
+*餐廳名稱A-Z
+*餐廳名稱Z-A
+*餐廳類別
+*餐廳地區
+
 
 ## 開發環境 <br />
 Node.js: v10.15.0 <br />
@@ -46,9 +52,19 @@ npm install -g nodemon //若電腦已安裝nodemon為全域則不用
 
 開啟 
 ```
-nodemon app.js
+nodemon app.js 或 nodemon dev 或 npm run dev
 ```
 顯示 `http://localhost:3000` 後複製貼上至網頁
+
+備註: 如果要匯入種子資料
+```
+npm run seed
+```
+然後再執行開啟
+```
+nodemon app.js 或 nodemon dev 或 npm run dev
+```
+
 
 <!-- ## API Reference
 restaurant API -->
