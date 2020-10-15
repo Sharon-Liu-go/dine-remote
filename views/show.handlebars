@@ -64,7 +64,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
-        <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+        <form action="/restaurants/{{restaurant._id}}?_method=delete" method="POST">
           <button type="submit" class="btn btn-primary">Yes</button>
         </form>
       </div>

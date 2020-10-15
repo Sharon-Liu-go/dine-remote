@@ -55,7 +55,7 @@ router.put('/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 
 })
-router.delete('/:restaurant_id/delete', (req, res) => {
+router.delete('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   console.log(id)
   console.log(req.body)
