@@ -32,7 +32,7 @@ router.get('/:restaurant_id', (req, res) => {
 
 })
 
-router.get('/:restaurant_id/edit', (req, res) => {
+router.get('/edit/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   console.log(id)
   return Dine.findById(id)
@@ -42,7 +42,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 
 })
 
-router.put('/:restaurant_id/edit', (req, res) => {
+router.put('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   console.log(id)
   console.log(req.body)

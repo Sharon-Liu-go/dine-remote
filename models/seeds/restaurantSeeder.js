@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const Dine = require('../restaurant')
 
-mongoose.connect('mongodb://localhost/dine', { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect('mongodb://localhost/dine', { useNewUrlParser: true, useUnifiedTopology: true })
 
-const db = mongoose.connection
+// const db = mongoose.connection
+
+const db = require('../../config/mongoose')
 
 db.on('error', () => {
   console.log('mongodb error!')
