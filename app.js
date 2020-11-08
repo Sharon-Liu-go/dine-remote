@@ -5,12 +5,19 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 
+
 require('./config/mongoose')
 const methodOverride = require('method-override')
+const session = require('express-session')
 const routes = require('./routes')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(session({
+  secret: "MYSECRET",
+  resave: false,
+  saveUninitialized: true
+}))
 app.use(routes)
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
