@@ -10,6 +10,7 @@ require('./config/mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const usePassport = require('./config/passport')
+
 const routes = require('./routes')
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -21,13 +22,14 @@ app.use(session({
 }))
 usePassport(app)
 
-app.use(routes)
+
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
+app.use(routes)
 
 // app.get('/', (req, res) => {
 //   res.render('index', { restaurants: restaurantList.results })
