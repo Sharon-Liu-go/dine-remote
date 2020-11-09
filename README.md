@@ -1,7 +1,8 @@
 # 餐廳清單
-收集你最喜愛的餐廳，有餐廳的資料和評分，並可依關鍵字做搜尋! 也可以新增、修改、刪除餐廳資訊。
+註冊登入成為會員，收集你最喜愛的餐廳，有餐廳的資料和評分，並可依關鍵字做搜尋! 也可以新增、修改、刪除餐廳資訊。
 
 ## 功能
+註冊登入為會員後：
 使用者可以在首頁看到所有餐廳與它們的簡單資料:<br />
 *餐廳照片<br />
 *餐廳名稱<br />
@@ -33,6 +34,16 @@ Express: 4.17.1<br />
 Express-handlebars: 5.1.0<br />
 Visual Studio Code<br />
 Mongo DB<br />
+"bcryptjs": "^2.4.3"<br />
+"body-parser": "^1.19.0"<br />
+"connect-flash": "^0.1.1"<br />
+"dotenv": "^8.2.0"<br />
+"express-session": "^1.17.1"<br />
+"method-override": "^3.0.0"<br />
+"mongoose": "^5.10.5"<br />
+"passport": "^0.4.1"<br />
+"passport-facebook": "^3.0.0"<br />
+"passport-local": "^1.0.0"<br />
 
 ## 安裝與執行步驟
 使用 git clone 複製專案到本機端<br />
@@ -52,7 +63,7 @@ npm install -g nodemon //若電腦已安裝nodemon為全域則不用
 
 開啟 
 ```
-nodemon app.js 或 nodemon dev 或 npm run dev
+nodemon app.js 或 nodemon 或 npm run dev
 ```
 顯示 `http://localhost:3000` 後複製貼上至網頁
 
