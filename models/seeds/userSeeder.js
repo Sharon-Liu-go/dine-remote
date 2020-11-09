@@ -58,6 +58,7 @@ db.once('open', () => {
       })
       .then(() => {
         console.log('done.')
+        return process.exit()
       })
   })
 
