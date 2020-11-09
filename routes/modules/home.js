@@ -4,8 +4,11 @@ const router = express.Router()
 const Dine = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
-  Dine.find()
+  const userId = req.user._id
+  console.log(userId)
+  Dine.find({ userId })
     .lean()
+    .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
 

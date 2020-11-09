@@ -9,8 +9,9 @@ router.get('/create', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  console.log(req.body)
-  Dine.create(req.body)
+  const userId = req.user._id
+  let restaurantCreated = Object.assign(req.body, { userId })
+  Dine.create(restaurantCreated)
     .then(() => res.redirect('/')) // 新增完成後導回首頁
     .catch(error => console.log(error))
 })
@@ -24,8 +25,9 @@ router.post('/', (req, res) => {
 
 //使用mongodb資料庫,瀏覽特定一筆餐廳
 router.get('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  return Dine.findById(id)
+  const _id = req.params.restaurant_id
+  const userId = req.user._id
+  return Dine.findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -33,9 +35,9 @@ router.get('/:restaurant_id', (req, res) => {
 })
 
 router.get('/edit/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  console.log(id)
-  return Dine.findById(id)
+  const _id = req.params.restaurant_id
+  const userId = req.user._id
+  return Dine.findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
@@ -43,23 +45,22 @@ router.get('/edit/:restaurant_id', (req, res) => {
 })
 
 router.put('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  console.log(id)
-  console.log(req.body)
-  return Dine.findById(id)
+  const _id = req.params.restaurant_id
+  const userId = req.user._id
+  return Dine.findOne({ _id, userId })
     .then(restaurant => {
-      restaurant = Object.assign(restaurant, req.body)
+      restaurant = Object.assign(restaurant, req.body, { userId })
+      console.log(restaurant)
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(error => console.log(error))
 
 })
 router.delete('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  console.log(id)
-  console.log(req.body)
-  return Dine.findById(id)
+  const _id = req.params.restaurant_id
+  const userId = req.user._id
+  return Dine.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -72,30 +73,32 @@ router.delete('/:restaurant_id', (req, res) => {
 router.get('/sort/:sortTarget', (req, res) => {
   console.log(req.params.sortTarget)
   const sortTarget = req.params.sortTarget
+  const userId = req.user._id
+
   switch (sortTarget) {
     case "A-Z":
-      return Dine.find()
+      return Dine.findOne({ userId })
         .lean()
         .sort({ name_en: 'asc' })
         .then(restaurants => res.render('index', { restaurants }))
         .catch(error => console.error(error))
 
     case "Z-A":
-      return Dine.find()
+      return Dine.findOne({ userId })
         .lean()
         .sort({ name_en: 'desc' })
         .then(restaurants => res.render('index', { restaurants }))
         .catch(error => console.error(error))
 
     case "類別":
-      return Dine.find()
+      return Dine.findOne({ userId })
         .lean()
         .sort({ category: 'asc' })
         .then(restaurants => res.render('index', { restaurants }))
         .catch(error => console.error(error))
 
     case "地區":
-      return Dine.find()
+      return Dine.findOne({ userId })
         .lean()
         .sort({ location: 'asc' })
         .then(restaurants => res.render('index', { restaurants }))

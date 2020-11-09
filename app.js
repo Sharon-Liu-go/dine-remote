@@ -1,7 +1,10 @@
 const express = require('express')
 // const restaurantList = require('./restaurant.json')
 const app = express()
-const port = 3000
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const port = process.env.PORT
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 
@@ -12,6 +15,7 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 
 const routes = require('./routes')
+const flash = require('connect-flash')
 
 
 
@@ -23,16 +27,20 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.use(session({
-  secret: "MYSECRET",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
 
 usePassport(app)
+app.use(flash())
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.error = req.flash('error')
   next()
 })
 
